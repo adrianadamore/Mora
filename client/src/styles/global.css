@@ -1,24 +1,34 @@
 :root {
-  --bg: #f4f5f7;
+  color-scheme: light;
+
+  --bg: #faf6f5;
   --surface: #ffffff;
-  --text: #1c1f26;
-  --muted: #6b7280;
-  --border: #e3e5ea;
-  --accent: #4f46e5;
-  --accent-text: #ffffff;
+  --text: #1e2d40;
+  --muted: #5f6b7a;
+  --border: #e8dedd;
+  --primary: #1e2d40;
+  --primary-text: #ffffff;
+  --accent: #c97b84;
+  --buttoncad: #366448;
+  --buttoncad-text: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f1115;
-    --surface: #171a21;
-    --text: #edeff3;
-    --muted: #9aa1ae;
-    --border: #262a33;
-    --accent: #818cf8;
-    --accent-text: #0f1115;
+
+  :root[data-theme="dark"] {
+  color-scheme: dark;
+  
+    --bg: #121b28;
+    --surface: #1a2638;
+    --text: #f3ecec;
+    --muted: #a3afbd;
+    --border: #2a3a50;
+    --primary: #f3ecec;
+    --primary-text: #1e2d40;
+    --accent: #d98f98;
+    --buttoncad: #4d8a63;
+    --buttoncad-text: #ffffff;
   }
-}
+
 
 * {
   box-sizing: border-box;
@@ -28,5 +38,12 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, sans-serif;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+input, button, textarea, select {
+  font-family: inherit;
 }

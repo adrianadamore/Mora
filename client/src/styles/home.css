@@ -29,10 +29,16 @@
 .card-tag {
   font-size: 12px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--primary);
 }
 
 .card-city {
   color: var(--muted);
   margin: 4px 0 12px;
+  font-weight: 400;
 }
+
+.card-price {
+  font-weight: 400;
+}
+
