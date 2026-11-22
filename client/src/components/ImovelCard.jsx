@@ -1,4 +1,4 @@
-function GarageCard({ nome, tipo, cidade, preco }) {
+function ImovelCard({ nome, tipo, cidade, preco }) {
   return (
     <article className="card">
       <div className="card-photo"></div>
@@ -12,4 +12,4 @@ function GarageCard({ nome, tipo, cidade, preco }) {
   )
 }
 
-export default GarageCard
+export default ImovelCard

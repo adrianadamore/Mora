@@ -2,12 +2,13 @@ import { useState } from 'react'
 import './styles/home.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import { garages } from './data/garages'
-import GarageCard from './components/GarageCard'
+import { imoveis } from './data/imoveis'
+import ImovelCard from './components/ImovelCard'
+import { Search } from 'lucide-react'
 
 function App() {
   const [busca, setBusca] = useState('')
-  const filtradas = garages.filter((g) =>
+  const filtradas = imoveis.filter((g) =>
     g.nome.toLowerCase().includes(busca.toLowerCase()) || g.cidade.toLowerCase().includes(busca.toLowerCase())
 
   )
@@ -15,22 +16,24 @@ function App() {
     <div>
       <Header />
       <main className="container" >
-        <input type="text" placeholder='Buscar garagens por nome ou cidade' value={busca} onChange={(e) => setBusca(e.target.value)} />
+        <div className='search'>
 
-        <div>
+        <input type="text" placeholder='Buscar por bairro ou cidade' value={busca} onChange={(e) => setBusca(e.target.value)} aria-label="Buscar imóveis" />
+               <Search className='search-icon' size={20} aria-hidden="true" />
+        </div>
+        
           {filtradas.length === 0 ? (
-            <p className='erro'>Garagem não encontrada</p>
+            <p className='erro'>Nenhum imóvel encontrado</p>
           ) : (
             <div className='grid'>
               {filtradas.map((g) => (
-                <GarageCard key={g.id} nome={g.nome} tipo={g.tipo} cidade={g.cidade} preco={g.preco} />
+                <ImovelCard key={g.id} nome={g.nome} tipo={g.tipo} cidade={g.cidade} preco={g.preco} />
 
               ))}
 
             </div>
 
           )}
-        </div>
 
       </main>
       <Footer />
