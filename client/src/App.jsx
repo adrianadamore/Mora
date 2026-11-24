@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import { imoveis } from './data/imoveis'
 import ImovelCard from './components/ImovelCard'
 import { Search } from 'lucide-react'
+import BackgroundSlider from './BackgroundSlider'
 
 function App() {
   const [busca, setBusca] = useState('')
@@ -16,6 +17,13 @@ function App() {
     <div>
       <Header />
       <main className="container" >
+
+        <BackgroundSlider>
+          <main style={{textAlign: 'center', paddingTop: '40vh'}} >
+            <h1>Meu site</h1>
+            <p>O fundo desliza</p>
+          </main>
+        </BackgroundSlider>
         <div className='search'>
 
         <input type="text" placeholder='Buscar por bairro ou cidade' value={busca} onChange={(e) => setBusca(e.target.value)} aria-label="Buscar imóveis" />
