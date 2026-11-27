@@ -1,15 +1,22 @@
 .header {
   position: sticky;
   top: 0;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 100%);
   z-index: 10;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.header.scrolled {
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .header-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 12px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,47 +26,65 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  flex-shrink: 0;
   text-decoration: none;
-  color: var(--text);
-  font-weight: 700;
-  font-size: 20px;
 }
 
-.logo-mark {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border-radius: 10px;
-  background: var(--primary);
-  color: var(--primary-text);
-}
-
-.logo-img {
-  height: 32px;
+.logo-img,
+.logo-light,
+.logo-dark {
+  height: 100px;
   width: auto;
+  object-fit: contain;
+  display: block;
+  transition: filter 0.25s ease, height 0.2s ease;
+}
+
+/* Quando rola a página sobre fundo claro, escurece a logo branca */
+.header.scrolled .logo-img {
+  filter: brightness(0) saturate(100%);
+}
+
+/* No tema escuro, mantém a logo branca tanto no topo quanto ao rolar */
+:root[data-theme="dark"] .logo-light,
+:root[data-theme="dark"] .logo-dark,
+:root[data-theme="dark"] .header.scrolled .logo-img {
+  display: inline-block;
+  filter: brightness(0) invert(1);
 }
 
 .nav {
   display: flex;
-  gap: 24px;
+  gap: 12px;
 }
 
 .nav a {
   text-decoration: none;
-  color: var(--muted);
+  color: #ffffff;
   font-weight: 500;
   white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.header.scrolled .nav a {
   color: var(--text);
+}
+
+.header.scrolled .nav a:hover {
+  background-color: rgba(128, 128, 128, 0.12);
 }
 
 .header-actions {
   display: flex;
+  align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .btn {
@@ -69,36 +94,35 @@
   font-weight: 600;
   cursor: pointer;
   border: 1px solid transparent;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
 .btn-ghost {
   background: transparent;
-  color: var(--text);
+  color: #ffffff;
 }
 
 .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.header.scrolled .btn-ghost {
+  color: var(--text);
+}
+
+.header.scrolled .btn-ghost:hover {
   background: var(--bg);
+  color: var(--text);
 }
 
 .btn-primary {
-  background: var(--buttoncad);
-  color: var(--buttoncad-text);
+  background: #c97b84;
+  color: #1e2d40;
 }
 
 .btn-primary:hover {
   opacity: 0.9;
-}
-
-.logo-dark {
-  display: none;
-}
-
-:root[data-theme="dark"] .logo-light {
-  display: none;
-}
-
-:root[data-theme="dark"] .logo-dark {
-  display: inline;
 }
 
 .theme-toggle {
@@ -111,8 +135,41 @@
   background: var(--surface);
   color: var(--text);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .theme-toggle:hover {
   background: var(--bg);
+}
+
+/* Ajustes para celular */
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 10px 16px;
+    gap: 12px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .logo-img,
+  .logo-light,
+  .logo-dark {
+    height: 32px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .btn {
+    padding: 7px 12px;
+    font-size: 14px;
+  }
+
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+  }
 }

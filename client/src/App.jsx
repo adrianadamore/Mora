@@ -16,14 +16,14 @@ function App() {
   return (
     <div>
       <Header />
-      <main className="container" >
-
-        <BackgroundSlider>
-          <main style={{textAlign: 'center', paddingTop: '40vh'}} >
+      <BackgroundSlider>
+          <main style={{textAlign: 'center'}} >
             <h1>Meu site</h1>
             <p>O fundo desliza</p>
           </main>
         </BackgroundSlider>
+      <main className="container" >
+
         <div className='search'>
 
         <input type="text" placeholder='Buscar por bairro ou cidade' value={busca} onChange={(e) => setBusca(e.target.value)} aria-label="Buscar imóveis" />
